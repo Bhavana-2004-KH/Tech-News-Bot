@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNewsBot AI Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 30px;
+        }
+        .summary {
+            background: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #007BFF;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .news-links ul {
+            padding-left: 20px;
+        }
+        .news-links li {
+            margin-bottom: 8px;
+        }
+        .news-links a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .news-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 TechNewsBot AI Assistant</h1>
+        <form method="POST">
+            <input type="text" name="question" placeholder="Ask about tech news (e.g. AI, Cybersecurity, SpaceX)" required value="{{ user_input }}">
+            <button type="submit">Search</button>
+        </form>
+
+        {% if summary %}
+        <div class="result">
+            <h2>Summary</h2>
+            <div class="summary">{{ summary }}</div>
+        </div>
+        {% endif %}
+
+        {% if articles %}
+        <div class="news-links">
+            <h2>Related Articles</h2>
+            <ul>
+                {% for article in articles %}
+                <li>
+                    <a href="{{ article.url }}" target="_blank">{{ article.title }}</a>
+                    <p>{{ article.description }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
