@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 import requests
-from transformers import pipeline
+from transformers import pipeline 
+import torch
+
 
 # --------------------------
 # CONFIG
